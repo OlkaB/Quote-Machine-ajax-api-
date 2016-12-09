@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Randome quote machine</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Aleksandra B." />
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+
+
+
+<body>
+	<div class="container">
+
+  <div class="header">
+    Choose Your Quote For Today...
+  </div>
+  <div class="quote-field">
+    <div id="quote">
+      <div id="quoteTextHere">
+        <q>Love and compassion are necessities, not luxuries. Without them humanity cannot survive.</q>
+      </div>
+      <div id="quoteAuthorHere">
+        <cite>Dalai Lama</cite>
+      </div>
+      <button id="bttn">Choose Another Quote</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+  $("#bttn").click(function() {
+  $.getJSON("http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?", function(data) {
+     console.log(data);
+    console.log(data.quoteText);
+    document.getElementById("quoteTextHere").innerHTML = data.quoteText;
+    document.getElementById("quoteAuthorHere").innerHTML = data.quoteAuthor;
+    });
+
+  });
+});
+</script>
+
+
+</body>
+</html>
